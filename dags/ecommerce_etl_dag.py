@@ -12,7 +12,7 @@ default_args = {
     "owner": "airflow",
     "depends_on_past": False,
     "start_date": days_ago(1),
-    "email": ["thagana44@gmail.com"],
+    "email": ["callie.xu@wolfspeed.com"],
     "email_on_failure": False,
     "email_on_retry": False,
     "retries": 3,
@@ -26,7 +26,7 @@ with DAG(
     schedule_interval=timedelta(days=1)
 ) as dag:
 
-    sample_base_filepath = "../faux_data_lake"
+    sample_base_filepath = "../network_drive"
     sample_remote_filepath = ""
 
     with TaskGroup("extraction_group") as extraction_group:
@@ -93,7 +93,7 @@ with DAG(
     '''
         send_sample_dataset_email = EmailOperator(
             task_id='send_sample_dataset_email',
-            to='thagana44@gmail.com',
+            to='callie.xu@wolfspeed.com',
             subject='Ecomm Industries Pipeline Report',
             html_content=""" <h1>Ecomm Industries Daily Summary and error report for {{ ds }}</h1> """,
             files=[f'{sample_base_filepath}/basket_analysis.csv', f'{sample_base_filepath}/recommendation_engine_analysis.csv'],
